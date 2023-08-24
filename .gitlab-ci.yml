@@ -1,0 +1,21 @@
+image: node
+
+cache:
+  paths:
+    - node_modules
+
+stages:
+  - init
+  - lint
+
+init:
+  stage: init
+  script:
+    -  npm i eslint @react-native-community/eslint-config --legacy-peer-deps
+    -  CI=false npm run build
+    
+
+eslint:
+  stage: lint
+  script:
+    - node_modules/eslint/bin/eslint.js 
